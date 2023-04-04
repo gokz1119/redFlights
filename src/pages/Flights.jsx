@@ -117,7 +117,7 @@ export default function Flights() {
           </div>
         </div>
         {flights.length > 0 ? (
-          <FlightListingCard flights={flights} />
+          <FlightListingCard flights={flights} no_of_passengers={parseInt(searchParams.passenger_count)} />
         ) : (
           <div className="mx-auto text-3xl text-center">
             Uh-oh we couldn't find any flights for you :(

@@ -51,7 +51,7 @@ export default function Login() {
           if (response.data.token) {
             setIsLoggedIn(true);
             cookies.set("auth", response.data.token, { path: "/" });
-            navigate("/");
+            navigate("/search");
           } else {
             setIsLoggedIn(false);
           }
@@ -128,8 +128,8 @@ export default function Login() {
                   </p>
                 )}
               </div>
-
-              <Button text="Log In" type="1" />
+              
+              <Button text="Log In" />
             </form>
           </div>
           <p className="text-center text-lg mb-8">

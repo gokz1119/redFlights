@@ -1,7 +1,11 @@
 import React from "react";
 import Button from "./Button";
+import { useNavigate } from "react-router-dom";
 
-export default function FlightListingCard({ flights }) {
+export default function FlightListingCard({ flights, no_of_passengers }) {
+
+  const navigate = useNavigate()
+
   const getFlightTime = (dateTimeString) => {
     let dateTime = new Date(dateTimeString);
     let minutes = dateTime.getMinutes();
@@ -28,6 +32,10 @@ export default function FlightListingCard({ flights }) {
 
     return date + " " + month + ", " + day;
   };
+
+  const handleOnClick = (flight_id) => {
+    navigate(`/book/${flight_id}?no_of_passengers=${no_of_passengers}`)
+  }
 
   return (
     <div className="flex flex-col">
@@ -71,7 +79,11 @@ export default function FlightListingCard({ flights }) {
               <span className="text-gray text-base mr-2">Starts at</span>
               &#8377;{flight.price}
             </span>
+            <div onClick={(e) => {
+              e.preventDefault();
+              handleOnClick(flight._id)}}>
             <Button text="Book Now" />
+            </div>
           </div>
         </div>
       ))}

@@ -4,10 +4,10 @@ import bookingImg from "../assets/booking.svg";
 import NavbarLanding from "../components/NavbarLanding";
 import { useNavigate } from "react-router-dom";
 import SearchForm from "../components/SearchForm";
-import cookies from 'js-cookie';
+import cookies from "js-cookie";
 
 export default function Landing() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [airports, setAirports] = useState([]);
 
   const getFormattedDate = (date) => {
@@ -35,9 +35,14 @@ export default function Landing() {
   // Let's handle the form submit
   const onSubmit = (e) => {
     e.preventDefault();
-    
-    navigate(`/flights?source_id=${parseInt(searchParams.source_id)}&destination_id=${parseInt(searchParams.destination_id)}&date=${searchParams.date}&passenger_count=${parseInt(searchParams.passenger_count)}`)
 
+    navigate(
+      `/flights?source_id=${parseInt(
+        searchParams.source_id
+      )}&destination_id=${parseInt(searchParams.destination_id)}&date=${
+        searchParams.date
+      }&passenger_count=${parseInt(searchParams.passenger_count)}`
+    );
   };
   useEffect(() => {
     const airportUrl = "http://localhost:3000/api/airports";
@@ -60,7 +65,13 @@ export default function Landing() {
               <span className="text-red-primary font-semibold">Flight</span>{" "}
               Path
             </h1>
-            <SearchForm airports={airports} onChange={onChange} onSubmit={onSubmit} getFormattedDate={getFormattedDate} searchParams={searchParams} />
+            <SearchForm
+              airports={airports}
+              onChange={onChange}
+              onSubmit={onSubmit}
+              getFormattedDate={getFormattedDate}
+              searchParams={searchParams}
+            />
           </div>
         </div>
         <img
